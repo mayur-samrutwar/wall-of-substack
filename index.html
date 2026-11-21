@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efedf5">
+  <title>Wall of Substack</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="quote-image.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="identity">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">w.</span>Wall of Substack</a>
+    </div>
+    <div class="header-actions">
+      <!-- Remove hidden to enable the search control and its keyboard shortcut. -->
+      <button class="search-toggle" id="search-toggle" type="button" aria-label="Search clippings" aria-controls="search-panel" aria-expanded="false" title="Search clippings (/)" hidden><span class="search-icon" aria-hidden="true"></span></button>
+      <button class="button primary" id="add"><span aria-hidden="true">＋</span> Pin a clipping</button>
+      <form class="search-panel" id="search-panel" role="search" hidden>
+        <label class="sr-only" for="search">Search clippings</label>
+        <input id="search" type="search" autocomplete="off" placeholder="Quote, title, or author…">
+        <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
+        <div class="search-results" id="search-results" role="status"></div>
+      </form>
+    </div>
+  </header>
+  <main>
+    <section class="wall" aria-label="Your draggable quote clippings">
+      <div class="canvas" id="canvas"></div>
+    </section>
+  </main>
+  <dialog id="editor" aria-labelledby="editor-title"><form id="clip-form"><div class="dialog-top"><button type="button" id="close" aria-label="Close">×</button></div><h2 id="editor-title">Pin a clipping</h2><label>The words<textarea id="quote" required maxlength="3000" rows="4" placeholder="The line you don’t want to forget…"></textarea></label><label>Article link<input id="url" type="url" required placeholder="https://someone.substack.com/p/…"></label><div class="form-row"><label>Article title<input id="title" required maxlength="250" placeholder="A title worth coming back to"></label><label>Author<input id="author" maxlength="100" placeholder="Who wrote it?"></label></div><fieldset><legend>A little color</legend><div class="swatches"><label><input type="radio" name="color" value="cream" checked><span style="--swatch:var(--cream)" title="Cream"></span><span class="sr-only">Cream</span></label><label><input type="radio" name="color" value="pink"><span style="--swatch:var(--pink)" title="Rose"></span><span class="sr-only">Rose</span></label><label><input type="radio" name="color" value="sage"><span style="--swatch:var(--sage)" title="Sage"></span><span class="sr-only">Sage</span></label><label><input type="radio" name="color" value="blue"><span style="--swatch:var(--blue)" title="Blue"></span><span class="sr-only">Blue</span></label></div></fieldset><button class="button primary submit" type="submit">＋ Pin to my wall</button></form></dialog>
+  <div class="trash-target" id="trash" aria-hidden="true">
+    <div class="trash-ring"></div>
+    <div class="trash-icon"><svg viewBox="0 0 32 36" fill="none" aria-hidden="true"><g class="trash-lid"><path d="M5 9h22M12 9V5h8v4"/></g><path d="m8 13 1.5 18h13L24 13M13 15v11M19 15v11"/></svg></div>
+    <span class="trash-label" id="trash-label">Drop to delete</span>
+  </div>
+  <span class="sr-only" id="drag-status" role="status" aria-live="polite"></span>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
